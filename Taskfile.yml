@@ -2,19 +2,14 @@ version: '3'
 
 vars:
   COMPOSE: docker compose -f docker/dev/docker-compose.yml
-  APP_CONTAINER: neon-vertex-api
+  WEB_CONTAINER: neon-vertex-web
 
 tasks:
   dev:
-    desc: "Sobe a api e acompanha os logs"
+    desc: "Sobe o frontend e acompanha os logs"
     cmds:
       - "{{.COMPOSE}} up --build -d"
       - task: logs
-
-  dev:build:
-    desc: "Rebuilda a imagem e sobe"
-    cmds:
-      - "{{.COMPOSE}} up --build -d"
 
   dev:down:
     desc: "Para e remove os containers"
@@ -22,20 +17,20 @@ tasks:
       - "{{.COMPOSE}} down"
 
   dev:reset:
-    desc: "Para containers, remove volumes e sobe do zero"
+    desc: "Para containers e sobe do zero"
     cmds:
-      - "{{.COMPOSE}} down -v"
+      - "{{.COMPOSE}} down"
       - "{{.COMPOSE}} up --build -d"
 
   logs:
-    desc: "Acompanha os logs da api em tempo real"
+    desc: "Acompanha os logs em tempo real"
     cmds:
-      - "{{.COMPOSE}} logs -f api"
+      - "{{.COMPOSE}} logs -f web"
 
   shell:
-    desc: "Abre um shell no container da api"
+    desc: "Abre um shell no container"
     cmds:
-      - docker exec -it {{.APP_CONTAINER}} sh
+      - docker exec -it {{.WEB_CONTAINER}} sh
 
   ps:
     desc: "Lista os containers do projeto"
@@ -43,21 +38,16 @@ tasks:
       - "{{.COMPOSE}} ps"
 
   restart:
-    desc: "Reinicia o container da api"
+    desc: "Reinicia o container"
     cmds:
-      - "{{.COMPOSE}} restart api"
+      - "{{.COMPOSE}} restart web"
 
   test:
-    desc: "Roda os testes via Maven"
+    desc: "Roda os testes"
     cmds:
-      - ./mvnw test
-
-  clean:
-    desc: "Limpa o build Maven"
-    cmds:
-      - ./mvnw clean
+      - "{{.COMPOSE}} exec web npm test"
 
   build:
-    desc: "Compila o projeto sem rodar os testes"
+    desc: "Gera o build de produção"
     cmds:
-      - ./mvnw package -DskipTests
+      - "{{.COMPOSE}} exec web npm run build"

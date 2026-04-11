@@ -1,14 +1,12 @@
 services:
-  api:
+  web:
     build:
       context: ../../
       dockerfile: docker/dev/Dockerfile
-    container_name: neon-vertex-api
+    container_name: neon-vertex-web
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "4200:4200"
     volumes:
-      - api_logs:/app/logs
-
-volumes:
-  api_logs:
+      - ../../src:/app/src
+      - ../../public:/app/public

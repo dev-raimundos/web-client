@@ -1,161 +1,207 @@
-@use "@angular/material" as mat;
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
 
+html {
+    height: 100%;
+    @include mat.theme(
+        (
+            color: (
+                primary: mat.$azure-palette,
+                tertiary: mat.$blue-palette,
+            ),
+            typography: Roboto,
+            density: 0,
+        )
+    );
+}
+
+body {
+    // Default the application to a light color theme. This can be changed to
+    // `dark` to enable the dark color theme, or to `light dark` to defer to the
+    // user's system settings.
+    color-scheme: light;
+
+    // Set a default background, font and text colors for the application using
+    // Angular Material's system-level CSS variables. Learn more about these
+    // variables at https://material.angular.dev/guide/system-variables
+    background-color: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
+    font: var(--mat-sys-body-medium);
+
+    // Reset the user agent margin.
+    margin: 0;
+    height: 100%;
+}
+@use '@angular/material' as mat;
 
 /* Light Theme */
 :root,
 :host {
-  @include mat.theme-overrides((primary: #506535,
-      on-primary: #ffffff,
-      primary-container: #d3ebaf,
-      on-primary-container: #102000,
-      inverse-primary: #b7cf95,
-      primary-fixed: #d3ebaf,
-      primary-fixed-dim: #b7cf95,
-      on-primary-fixed: #102000,
-      on-primary-fixed-variant: #394d20,
-      secondary: #59614b,
-      on-secondary: #ffffff,
-      secondary-container: #dde6ca,
-      on-secondary-container: #171e0d,
-      secondary-fixed: #dde6ca,
-      secondary-fixed-dim: #c1caaf,
-      on-secondary-fixed: #171e0d,
-      on-secondary-fixed-variant: #414a35,
-      tertiary: #2f6856,
-      on-tertiary: #ffffff,
-      tertiary-container: #b3efd8,
-      on-tertiary-container: #002118,
-      tertiary-fixed: #b3efd8,
-      tertiary-fixed-dim: #98d3bd,
-      on-tertiary-fixed: #002118,
-      on-tertiary-fixed-variant: #12503f,
-      background: #fcf8f7,
-      on-background: #1c1b1b,
-      surface: #fcf8f7,
-      surface-dim: #ddd9d8,
-      surface-bright: #fcf8f7,
-      surface-container-lowest: #ffffff,
-      surface-container-low: #f7f3f1,
-      surface-container: #f1edec,
-      surface-container-high: #ebe7e6,
-      surface-container-highest: #e5e2e0,
-      on-surface: #1c1b1b,
-      shadow: #000000,
-      scrim: #000000,
-      surface-tint: #5e5f5a,
-      inverse-surface: #313030,
-      inverse-on-surface: #f4f0ef,
-      outline: #777871,
-      outline-variant: #c7c7be,
-      neutral: #797776,
-      neutral10: #1c1b1b,
-      error: #ba1a1a,
-      error-container: #ffdad6,
-      on-error: #ffffff,
-      on-error-container: #410002,
-      surface-variant: #e3e3da,
-      on-surface-variant: #464741,
-      neutral-variant: #777870,
-      neutral-variant20: #2f312b,
-      inverse-secondary: #c1caaf,
-      inverse-tertiary: #98d3bd,
-    ));
+    @include mat.theme-overrides(
+        (
+            primary: #506535,
+            on-primary: #ffffff,
+            primary-container: #d3ebaf,
+            on-primary-container: #102000,
+            inverse-primary: #b7cf95,
+            primary-fixed: #d3ebaf,
+            primary-fixed-dim: #b7cf95,
+            on-primary-fixed: #102000,
+            on-primary-fixed-variant: #394d20,
+            secondary: #59614b,
+            on-secondary: #ffffff,
+            secondary-container: #dde6ca,
+            on-secondary-container: #171e0d,
+            secondary-fixed: #dde6ca,
+            secondary-fixed-dim: #c1caaf,
+            on-secondary-fixed: #171e0d,
+            on-secondary-fixed-variant: #414a35,
+            tertiary: #2f6856,
+            on-tertiary: #ffffff,
+            tertiary-container: #b3efd8,
+            on-tertiary-container: #002118,
+            tertiary-fixed: #b3efd8,
+            tertiary-fixed-dim: #98d3bd,
+            on-tertiary-fixed: #002118,
+            on-tertiary-fixed-variant: #12503f,
+            background: #fcf8f7,
+            on-background: #1c1b1b,
+            surface: #fcf8f7,
+            surface-dim: #ddd9d8,
+            surface-bright: #fcf8f7,
+            surface-container-lowest: #ffffff,
+            surface-container-low: #f7f3f1,
+            surface-container: #f1edec,
+            surface-container-high: #ebe7e6,
+            surface-container-highest: #e5e2e0,
+            on-surface: #1c1b1b,
+            shadow: #000000,
+            scrim: #000000,
+            surface-tint: #5e5f5a,
+            inverse-surface: #313030,
+            inverse-on-surface: #f4f0ef,
+            outline: #777871,
+            outline-variant: #c7c7be,
+            neutral: #797776,
+            neutral10: #1c1b1b,
+            error: #ba1a1a,
+            error-container: #ffdad6,
+            on-error: #ffffff,
+            on-error-container: #410002,
+            surface-variant: #e3e3da,
+            on-surface-variant: #464741,
+            neutral-variant: #777870,
+            neutral-variant20: #2f312b,
+            inverse-secondary: #c1caaf,
+            inverse-tertiary: #98d3bd,
+        )
+    );
 }
 
 /* Dark Theme */
 .dark {
-  @include mat.theme-overrides((primary: #b7cf95,
-      on-primary: #24360b,
-      primary-container: #394d20,
-      on-primary-container: #d3ebaf,
-      inverse-primary: #506535,
-      primary-fixed: #d3ebaf,
-      primary-fixed-dim: #b7cf95,
-      on-primary-fixed: #102000,
-      on-primary-fixed-variant: #394d20,
-      secondary: #c1caaf,
-      on-secondary: #2b3320,
-      secondary-container: #414a35,
-      on-secondary-container: #dde6ca,
-      secondary-fixed: #dde6ca,
-      secondary-fixed-dim: #c1caaf,
-      on-secondary-fixed: #171e0d,
-      on-secondary-fixed-variant: #414a35,
-      tertiary: #98d3bd,
-      on-tertiary: #00382a,
-      tertiary-container: #12503f,
-      on-tertiary-container: #b3efd8,
-      tertiary-fixed: #b3efd8,
-      tertiary-fixed-dim: #98d3bd,
-      on-tertiary-fixed: #002118,
-      on-tertiary-fixed-variant: #12503f,
-      background: #141313,
-      on-background: #e5e2e0,
-      surface: #141313,
-      surface-dim: #141313,
-      surface-bright: #3a3938,
-      surface-container-lowest: #0e0e0e,
-      surface-container-low: #1c1b1b,
-      surface-container: #201f1f,
-      surface-container-high: #2a2a29,
-      surface-container-highest: #353434,
-      on-surface: #e5e2e0,
-      shadow: #000000,
-      scrim: #000000,
-      surface-tint: #c8c7c1,
-      inverse-surface: #e5e2e0,
-      inverse-on-surface: #313030,
-      outline: #91918a,
-      outline-variant: #464741,
-      neutral: #797776,
-      neutral10: #1c1b1b,
-      error: #ffb4ab,
-      error-container: #93000a,
-      on-error: #690005,
-      on-error-container: #ffdad6,
-      surface-variant: #464741,
-      on-surface-variant: #c7c7be,
-      neutral-variant: #777870,
-      neutral-variant20: #2f312b,
-      inverse-secondary: #59614b,
-      inverse-tertiary: #2f6856,
-    ));
+    @include mat.theme-overrides(
+        (
+            primary: #b7cf95,
+            on-primary: #24360b,
+            primary-container: #394d20,
+            on-primary-container: #d3ebaf,
+            inverse-primary: #506535,
+            primary-fixed: #d3ebaf,
+            primary-fixed-dim: #b7cf95,
+            on-primary-fixed: #102000,
+            on-primary-fixed-variant: #394d20,
+            secondary: #c1caaf,
+            on-secondary: #2b3320,
+            secondary-container: #414a35,
+            on-secondary-container: #dde6ca,
+            secondary-fixed: #dde6ca,
+            secondary-fixed-dim: #c1caaf,
+            on-secondary-fixed: #171e0d,
+            on-secondary-fixed-variant: #414a35,
+            tertiary: #98d3bd,
+            on-tertiary: #00382a,
+            tertiary-container: #12503f,
+            on-tertiary-container: #b3efd8,
+            tertiary-fixed: #b3efd8,
+            tertiary-fixed-dim: #98d3bd,
+            on-tertiary-fixed: #002118,
+            on-tertiary-fixed-variant: #12503f,
+            background: #141313,
+            on-background: #e5e2e0,
+            surface: #141313,
+            surface-dim: #141313,
+            surface-bright: #3a3938,
+            surface-container-lowest: #0e0e0e,
+            surface-container-low: #1c1b1b,
+            surface-container: #201f1f,
+            surface-container-high: #2a2a29,
+            surface-container-highest: #353434,
+            on-surface: #e5e2e0,
+            shadow: #000000,
+            scrim: #000000,
+            surface-tint: #c8c7c1,
+            inverse-surface: #e5e2e0,
+            inverse-on-surface: #313030,
+            outline: #91918a,
+            outline-variant: #464741,
+            neutral: #797776,
+            neutral10: #1c1b1b,
+            error: #ffb4ab,
+            error-container: #93000a,
+            on-error: #690005,
+            on-error-container: #ffdad6,
+            surface-variant: #464741,
+            on-surface-variant: #c7c7be,
+            neutral-variant: #777870,
+            neutral-variant20: #2f312b,
+            inverse-secondary: #59614b,
+            inverse-tertiary: #2f6856,
+        )
+    );
 }
 
 /* Typography */
 :root,
 :host {
-  /* core typography tokens are not generating css variables, hence below */
-  --mat-sys-brand-font-family: Roboto;
-  --mat-sys-plain-font-family: Roboto;
-  --mat-sys-bold-font-weight: 700;
-  --mat-sys-medium-font-weight: 500;
-  --mat-sys-regular-font-weight: 400;
+    /* core typography tokens are not generating css variables, hence below */
+    --mat-sys-brand-font-family: Roboto;
+    --mat-sys-plain-font-family: Roboto;
+    --mat-sys-bold-font-weight: 700;
+    --mat-sys-medium-font-weight: 500;
+    --mat-sys-regular-font-weight: 400;
 
-  @include mat.theme-overrides((brand-family: Roboto,
-      plain-family: Roboto,
-      bold-weight: 700,
-      medium-weight: 500,
-      regular-weight: 400,
-    ));
+    @include mat.theme-overrides(
+        (
+            brand-family: Roboto,
+            plain-family: Roboto,
+            bold-weight: 700,
+            medium-weight: 500,
+            regular-weight: 400,
+        )
+    );
 }
 
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
+    // Default the application to a light color theme. This can be changed to
+    // `dark` to enable the dark color theme, or to `light dark` to defer to the
+    // user's system settings.
+    color-scheme: light;
 
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
+    // Set a default background, font and text colors for the application using
+    // Angular Material's system-level CSS variables. Learn more about these
+    // variables at https://material.angular.dev/guide/system-variables
+    background-color: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
+    font: var(--mat-sys-body-medium);
 
-  // Reset the user agent margin.
-  margin: 0;
-  height: 100%;
+    // Reset the user agent margin.
+    margin: 0;
+    height: 100%;
 }
 
 /* You can add global styles to this file, and also import other style files */
